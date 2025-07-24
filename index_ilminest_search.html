@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IlmiNest লাইভ বই সার্চ</title>
+  <style>
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #155724;
+    }
+    .search-box {
+      max-width: 600px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="text"] {
+      padding: 12px;
+      width: 100%;
+      max-width: 500px;
+      font-size: 18px;
+      border: 2px solid #28a745;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .book-item {
+      border: 1px solid #c3e6cb;
+      border-left: 8px solid #28a745;
+      background: #e2f5e9;
+      padding: 1rem;
+      margin: 0.5rem auto;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+    .book-item h3 {
+      margin: 0 0 0.5rem 0;
+    }
+    .book-item a {
+      color: #155724;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .book-item a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 IlmiNest লাইভ বই সার্চ</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="বইয়ের নাম লিখুন...">
+  </div>
+
+  <div id="bookList">
+    <div class="book-item" data-title="হতাশ হবেন না">
+      <h3>হতাশ হবেন না</h3>
+      <a href="https://sites.google.com/view/ilminest/hotash" target="_blank">বইটি পড়ুন</a>
+    </div>
+    <div class="book-item" data-title="আর-রাহিকুল মাখতুম">
+      <h3>আর-রাহিকুল মাখতুম</h3>
+      <a href="https://sites.google.com/view/ilminest/rahikul" target="_blank">বইটি পড়ুন</a>
+    </div>
+    <div class="book-item" data-title="রাহে বেলায়াত">
+      <h3>রাহে বেলায়াত</h3>
+      <a href="https://sites.google.com/view/ilminest/rah-e-belayet" target="_blank">বইটি পড়ুন</a>
+    </div>
+    <div class="book-item" data-title="তাসাওউফ ও আত্মশুদ্ধি">
+      <h3>তাসাওউফ ও আত্মশুদ্ধি</h3>
+      <a href="https://sites.google.com/view/ilminest/tasauf" target="_blank">বইটি পড়ুন</a>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const bookItems = document.querySelectorAll(".book-item");
+
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value.toLowerCase();
+      bookItems.forEach(item => {
+        const title = item.getAttribute("data-title").toLowerCase();
+        item.style.display = title.includes(searchTerm) ? "block" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
