@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Ilmi Nest - বই লিস্ট</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+    input { width: 100%; padding: 10px; font-size: 16px; border: 2px solid green; border-radius: 5px; }
+    .results { margin-top: 10px; }
+    .results div { background: white; border: 1px solid #ccc; padding: 8px; margin: 4px 0; cursor: pointer; }
+    .book-section { margin-top: 100px; padding: 20px; background: white; border-radius: 8px; }
+    h2 { color: green; }
+  </style>
+</head>
+<body>
+  <h1>📚 বইয়ের লাইভ সার্চ</h1>
+  <input type="text" id="searchBox" placeholder="বইয়ের নাম লিখুন...">
+  <div class="results" id="results"></div>
 
+  <!-- বইয়ের সেকশনগুলো -->
+  <div id="h1" class="book-section"><h2>হতাশ হবেন না</h2><p>বইয়ের বিস্তারিত...</p></div>
+  <div id="h2" class="book-section"><h2>আর-রাহিকুল মাখতুম</h2><p>বইয়ের বিস্তারিত...</p></div>
+  <div id="h3" class="book-section"><h2>রাহে বেলায়াত</h2><p>বইয়ের বিস্তারিত...</p></div>
+  <div id="h4" class="book-section"><h2>তাসাওউফ ও আত্মশুদ্ধি</h2><p>বইয়ের বিস্তারিত...</p></div>
+  <div id="h5" class="book-section"><h2>দ্বীনে ফেরার পর হারিয়ে যেয়ো না</h2><p>বইয়ের বিস্তারিত...</p></div>
+
+  <script>
+    const books = [
+      { name: "হতাশ হবেন না", id: "h1" },
+      { name: "আর-রাহিকুল মাখতুম", id: "h2" },
+      { name: "রাহে বেলায়াত", id: "h3" },
+      { name: "তাসাওউফ ও আত্মশুদ্ধি", id: "h4" },
+      { name: "দ্বীনে ফেরার পর হারিয়ে যেয়ো না", id: "h5" }
+    ];
+
+    const input = document.getElementById('searchBox');
+    const resultBox = document.getElementById('results');
+
+    input.addEventListener('input', () => {
+      const value = input.value.toLowerCase();
+      resultBox.innerHTML = '';
+      if (value.length === 0) return;
+      const filtered = books.filter(book => book.name.toLowerCase().includes(value));
+      filtered.forEach(book => {
+        const div = document.createElement('div');
+        div.innerText = book.name;
+        div.onclick = () => {
+          document.getElementById(book.id).scrollIntoView({ behavior: 'smooth' });
+        };
+        resultBox.appendChild(div);
+      });
+    });
+  </script>
+</body>
+</html>
